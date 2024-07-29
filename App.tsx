@@ -19,7 +19,7 @@ function App(): React.JSX.Element {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       {/* <Test2 /> */}
-      {/* <Stack /> */}
+      <Stack />
       {/* <ScreenWelcome /> */}
       {/* <Bai1 /> */}
       {/* <Test1 /> */}

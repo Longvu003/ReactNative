@@ -1,38 +1,30 @@
 import { FlatList, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import StyleHome from '../component/StyleHome'
-const data = [
-    {
-        id: 1,
-        name: 'cây chuối',
-        category: 'Cây',
-        price: '1270000',
-        img: require('../../../Assets/images/user.png')
-    },
-    {
-        id: 2,
-        name: 'cây chuối',
-        category: 'Cây',
-        price: '150000',
-        img: require('../../../Assets/images/anhbien3.jpg')
-    },
-    {
-        id: 3,
-        name: 'cây chuối',
-        category: 'Cây',
-        price: '120000',
-        img: require('../../../Assets/images/anhbien3.jpg')
-    },
-    {
-        id: 4,
-        name: 'cây chuối',
-        category: 'Cây',
-        price: '122000',
-        img: require('../../../Assets/images/anhbien3.jpg')
-    },
-]
+import axios from 'axios'
+const BaseUrl = "http://172.16.122.242:3000"
+const fetchUser = async () => {
+    try {
+        const configurationObject = {
+            method: 'get',
+            url: `${BaseUrl}/getAll`,
+        };
+        console.log("Making request to:", configurationObject.url); // Log the URL
+
+        const response = await axios(configurationObject);
+
+        console.log(response.data);
+    } catch (error) {
+        console.log(error)
+    }
+
+};
 const Home = ({ navigation }) => {
+    const [data, setData] = useState([])
+    useEffect(() => {
+        fetchUser()
+    }, [])
 
     return (
         <ScrollView>
@@ -62,10 +54,10 @@ const Home = ({ navigation }) => {
                                 <TouchableOpacity style={StyleHome.Item} onPress={() =>
                                     navigation.navigate('Detail', { data: item })
                                 }>
-                                    <Image style={StyleHome.imgItem} source={item.img} />
-                                    <Text style={StyleHome.txtNameItem} >{item.name}</Text>
-                                    <Text style={StyleHome.txtCategory} >{item.category}</Text>
-                                    <Text style={StyleHome.txtPrice}>{item.price}</Text>
+                                    {/* <Image style={StyleHome.imgItem} source={item.nameProduct} /> */}
+                                    <Text style={StyleHome.txtNameItem} >{item.nameProduct}</Text>
+                                    {/* <Text style={StyleHome.txtCategory} >{item.category}</Text>
+                                    <Text style={StyleHome.txtPrice}>{item.price}</Text>  */}
                                 </TouchableOpacity>
                             </View>
                         )}

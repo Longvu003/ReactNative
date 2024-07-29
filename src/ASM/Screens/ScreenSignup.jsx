@@ -121,7 +121,7 @@ const ScreenSignup = ({ navigation }) => {
                 <TouchableOpacity>
                     <Text style={StyleSignup.txtSignup}>Have account?</Text>
                 </TouchableOpacity>
-                <TouchableOpacity >
+                <TouchableOpacity onPress={() => navigation.navigate('Welcome')}>
                     <Text style={[StyleSignup.txtSignup, { color: '#009245' }]} >Login</Text>
                 </TouchableOpacity>
             </View>
